@@ -3,12 +3,10 @@ package com.example.restservice.services;
 import com.example.restservice.domain.Country;
 import com.example.restservice.domain.Locality;
 import com.example.restservice.domain.Region;
-import com.example.restservice.dto.CountryDto;
 import com.example.restservice.dto.LocalityDto;
 import com.example.restservice.dto.RegionDto;
 import com.example.restservice.repositories.LocalityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -57,5 +55,13 @@ public class LocalityServiceImpl extends AbstractService<Locality, LocalityDto, 
         } catch (ResponseStatusException e) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    public Locality findByName(String name) {
+        var response = localityRepository.findByName(name);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
     }
 }

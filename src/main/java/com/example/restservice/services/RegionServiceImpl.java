@@ -6,9 +6,7 @@ import com.example.restservice.dto.CountryDto;
 import com.example.restservice.dto.RegionDto;
 import com.example.restservice.repositories.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -55,5 +53,13 @@ public class RegionServiceImpl extends AbstractService<Region, RegionDto, Long> 
         } catch (ResponseStatusException e) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    public Region findByName(String name) {
+        var response = regionRepository.findByName(name);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
     }
 }

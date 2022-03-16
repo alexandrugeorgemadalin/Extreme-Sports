@@ -23,7 +23,7 @@ public class CountryController extends AbstractController<Country, CountryDto, L
         this.service = countryService;
     }
 
-    @GetMapping(params = {"name"})
+    @GetMapping(value = "/find", params = {"name"})
     public ResponseEntity<Country> getCountryByName(@RequestParam("name") String name) {
         try {
             return new ResponseEntity<>(service.findByName(name), HttpStatus.OK);

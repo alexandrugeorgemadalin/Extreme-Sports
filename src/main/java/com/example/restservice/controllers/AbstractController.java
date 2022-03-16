@@ -1,8 +1,6 @@
 package com.example.restservice.controllers;
 
 import com.example.restservice.services.EntityService;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

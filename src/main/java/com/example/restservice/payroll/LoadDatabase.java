@@ -1,9 +1,8 @@
 package com.example.restservice.payroll;
 
 import com.example.restservice.domain.Country;
-import com.example.restservice.domain.Region;
 import com.example.restservice.repositories.CountryRepository;
-import com.example.restservice.repositories.RegionRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
