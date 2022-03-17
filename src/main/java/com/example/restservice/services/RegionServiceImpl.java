@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -62,4 +63,15 @@ public class RegionServiceImpl extends AbstractService<Region, RegionDto, Long> 
         }
         return response;
     }
+
+    public List<Region> findByListOfRegions(List<String> regions) {
+        var response = regionRepository.findByListOfRegions(regions);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
 }
+
+

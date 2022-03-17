@@ -1,6 +1,5 @@
 package com.example.restservice.services;
 
-import com.example.restservice.domain.Country;
 import com.example.restservice.domain.Locality;
 import com.example.restservice.domain.Sport;
 import com.example.restservice.dto.LocalityDto;
@@ -85,6 +84,22 @@ public class SportServiceImpl extends AbstractService<Sport, SportDto, Long> imp
 
     public Sport findByNameAndPeriod(String name, Date startDate, Date endDate) {
         var response = sportRepository.findByNameAndPeriod(name, startDate, endDate);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    public List<Sport> findByListOfSports(List<String> sports) {
+        var response = sportRepository.findByListOfSports(sports);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    public List<Sport> findByCostRange(Integer min, Integer max) {
+        var response = sportRepository.findByCostRange(min, max);
         if (response == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

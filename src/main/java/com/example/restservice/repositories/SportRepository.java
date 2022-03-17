@@ -19,6 +19,12 @@ public interface SportRepository extends JpaRepository<Sport, Long> {
     @Query(value = "SELECT s FROM Sport s WHERE s.startDate < ?1 AND s.endDate > ?2")
     List<Sport> findByPeriod(Date startDate, Date endDate);
 
-    @Query(value = "SELECT s FROM Sport s WHERE LOWER(s.name) = LOWER(?1) AND s.startDate < ?1 AND s.endDate > ?2")
+    @Query(value = "SELECT DISTINCT s FROM Sport s WHERE LOWER(s.name) = LOWER(?1) AND s.startDate < ?1 AND s.endDate > ?2")
     Sport findByNameAndPeriod(String name, Date startDate, Date endDate);
+
+    @Query(value = "SELECT DISTINCT s FROM Sport s WHERE s.name IN (:sports)")
+    List<Sport> findByListOfSports(List<String> sports);
+
+    @Query(value = "SELECT DISTINCT s FROM Sport s WHERE s.dailyCost BETWEEN ?1 AND ?2")
+    List<Sport> findByCostRange(Integer min, Integer max);
 }

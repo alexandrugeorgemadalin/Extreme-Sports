@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -36,6 +37,14 @@ public class CountryServiceImpl extends AbstractService<Country, CountryDto, Lon
 
     public Country findByName(String name) {
         var response = countryRepository.findByName(name);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    public List<Country> findByListOfCountries(List<String> countries) {
+        var response = countryRepository.findByListOfCountries(countries);
         if (response == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

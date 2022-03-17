@@ -1,6 +1,5 @@
 package com.example.restservice.services;
 
-import com.example.restservice.domain.Country;
 import com.example.restservice.domain.Locality;
 import com.example.restservice.domain.Region;
 import com.example.restservice.dto.LocalityDto;
@@ -13,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.lang.module.ResolutionException;
+import java.util.List;
 
 @Service
 @Transactional
@@ -59,6 +59,14 @@ public class LocalityServiceImpl extends AbstractService<Locality, LocalityDto, 
 
     public Locality findByName(String name) {
         var response = localityRepository.findByName(name);
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
+    public List<Locality> findByListOfLocalities(List<String> localities) {
+        var response = localityRepository.findByListOfLocalities(localities);
         if (response == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
