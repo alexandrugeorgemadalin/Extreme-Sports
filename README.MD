@@ -1,10 +1,10 @@
-#REST-API Extreme Sports
+# REST-API Extreme Sports
 ## Description
 This is a REST API used for Extreme Sports. It is developed in Java using Spring Framework
 
 # Usage
 
-##Countries
+## Countries
 #### Query for all countries
 `GET /api/v1/countries`
 
@@ -127,7 +127,7 @@ Exemple response:
 ]
 ```
 
-##Regions
+## Regions
 #### Query for all regions
 `GET /api/v1/regions`
 
@@ -273,7 +273,7 @@ Exemple response:
 ]
 ```
 
-##Localities
+## Localities
 #### Query for all localities
 `GET /api/v1/localities`
 
@@ -397,7 +397,7 @@ Exemple response:
   }
 ]
 ```
-##Sports
+## Sports
 #### Query for all sports
 `GET /api/v1/sports`
 
