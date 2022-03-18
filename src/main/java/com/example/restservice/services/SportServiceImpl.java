@@ -46,6 +46,9 @@ public class SportServiceImpl extends AbstractService<Sport, SportDto, Long> imp
     @Override
     protected Sport updateEntityFromDto(Sport toUpdate, SportDto sportDto) {
         toUpdate.setName(sportDto.getName());
+        toUpdate.setDailyCost(sportDto.getDailyCost());
+        toUpdate.setStartDate(sportDto.getStartDate());
+        toUpdate.setEndDate(sportDto.getEndDate());
         if (toUpdate.getLocality().getId().equals(sportDto.getLocalityID())) {
             return toUpdate;
         }
